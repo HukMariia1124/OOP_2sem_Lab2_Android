@@ -58,4 +58,9 @@ class CalculatorViewModel : ViewModel() {
     fun onPi() = run(UnaryCommand(_state, "π"))
     fun onE() = run(UnaryCommand(_state, "e"))
     fun onPow() = run(BinaryOperatorCommand(_state, "^"))
+    fun onNegate() = run(NegateCommand(_state))
+    fun onAbs() = run(AbsCommand(_state))
+    fun onPow10() = run(Pow10Command(_state))
+    fun onFactorial() = run(FactorialCommand(_state))
+    fun onModulo() = run(ModuloCommand(_state))
 }

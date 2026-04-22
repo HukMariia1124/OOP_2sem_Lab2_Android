@@ -102,7 +102,7 @@ fun CalculatorApp(vm: CalculatorViewModel = viewModel()) {
                     Text(
                         text = state.story,
                         color = StoryColor,
-                        fontSize = 32.sp,
+                        fontSize = 22.sp,
                         maxLines = 1,
                         softWrap = false,
                         modifier = Modifier.padding(horizontal = 4.dp)
@@ -196,7 +196,7 @@ fun CalculatorApp(vm: CalculatorViewModel = viewModel()) {
                     }
                 }
 
-                // Extra scientific column
+                // Extra scientific column 1
                 AnimatedVisibility(
                     visible = extraOpen,
                     enter = expandHorizontally(),
@@ -222,6 +222,38 @@ fun CalculatorApp(vm: CalculatorViewModel = viewModel()) {
                                     .weight(1f),
                                 color = btn.color,
                                 fontSize = 18,
+                                onClick = btn.action
+                            )
+                        }
+                    }
+                }
+
+                // Extra scientific column 2
+                AnimatedVisibility(
+                    visible = extraOpen,
+                    enter = expandHorizontally(),
+                    exit = shrinkHorizontally()
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .width(72.dp)
+                            .fillMaxHeight(),
+                        verticalArrangement = Arrangement.spacedBy(0.dp)
+                    ) {
+                        listOf(
+                            Btn("+/−", ExtraBtn) { vm.onNegate() },
+                            Btn("|x|", ExtraBtn) { vm.onAbs() },
+                            Btn("10ˣ", ExtraBtn) { vm.onPow10() },
+                            Btn("n!",  ExtraBtn) { vm.onFactorial() },
+                            Btn("mod", ExtraBtn) { vm.onModulo() },
+                        ).forEach { btn ->
+                            CalcButton(
+                                text = btn.label,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .weight(1f),
+                                color = btn.color,
+                                fontSize = 16,
                                 onClick = btn.action
                             )
                         }
